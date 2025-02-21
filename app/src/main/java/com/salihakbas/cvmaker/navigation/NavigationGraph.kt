@@ -1,5 +1,9 @@
 package com.salihakbas.cvmaker.navigation
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
@@ -85,14 +89,25 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<CreateCv> {
+        composable<CreateCv>(
+            enterTransition = { fadeIn() },
+            exitTransition = { fadeOut() }
+        ) {
             val viewModel: CreateCvViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
             CreateCvScreen(
                 uiState = uiState,
                 uiEffect = uiEffect,
-                onAction = viewModel::onAction
+                onAction = viewModel::onAction,
+                navigateToPersonalInfo = { navController.navigate(PersonalInfo) },
+                navigateToEducationInfo = { navController.navigate(EducationInfo) },
+                navigateToExperienceInfo = { navController.navigate(ExperienceInfo) },
+                navigateToSkillsInfo = { navController.navigate(SkillsInfo) },
+                navigateToLanguageInfo = { navController.navigate(LanguageInfo) },
+                navigateToProjectInfo = { navController.navigate(ProjectInfo) },
+                navigateToHobbyInfo = { navController.navigate(HobbyInfo) },
+                navigateToReferenceInfo = { navController.navigate(ReferenceInfo) },
             )
         }
         composable<Settings> {
@@ -105,7 +120,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<PersonalInfo> {
+        composable<PersonalInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: PersonalInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -115,7 +143,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<EducationInfo> {
+        composable<EducationInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: EducationInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -125,7 +166,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<ExperienceInfo> {
+        composable<ExperienceInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: ExperienceInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -135,7 +189,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<SkillsInfo> {
+        composable<SkillsInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: SkillsInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -145,7 +212,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<HobbyInfo> {
+        composable<HobbyInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: HobbyInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -155,7 +235,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<ProjectInfo> {
+        composable<ProjectInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: ProjectInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -165,7 +258,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<ReferenceInfo> {
+        composable<ReferenceInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: ReferenceInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -175,7 +281,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<TemplateSelection> {
+        composable<TemplateSelection>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: TemplateSelectionViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
@@ -205,7 +324,20 @@ fun NavigationGraph(
                 onAction = viewModel::onAction
             )
         }
-        composable<LanguageInfo> {
+        composable<LanguageInfo>(
+            enterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            exitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            },
+            popEnterTransition = {
+                slideInHorizontally(initialOffsetX = {it}) + fadeIn()
+            },
+            popExitTransition = {
+                slideOutHorizontally(targetOffsetX = {it}) + fadeOut()
+            }
+        ) {
             val viewModel: LanguageInfoViewModel = hiltViewModel()
             val uiState by viewModel.uiState.collectAsStateWithLifecycle()
             val uiEffect = viewModel.uiEffect
