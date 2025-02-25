@@ -24,6 +24,13 @@ class ExperienceInfoViewModel @Inject constructor() : ViewModel() {
     val uiEffect: Flow<UiEffect> by lazy { _uiEffect.receiveAsFlow() }
 
     fun onAction(uiAction: UiAction) {
+        when (uiAction) {
+            is UiAction.CompanyNameChanged -> updateUiState { copy(companyName = uiAction.companyName) }
+            is UiAction.PositionChanged -> updateUiState { copy(position = uiAction.position) }
+            is UiAction.StartDateChanged -> updateUiState { copy(startDate = uiAction.startDate) }
+            is UiAction.EndDateChanged -> updateUiState { copy(endDate = uiAction.endDate) }
+            is UiAction.DescriptionChanged -> updateUiState { copy(description = uiAction.description) }
+        }
     }
 
     private fun updateUiState(block: UiState.() -> UiState) {

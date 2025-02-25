@@ -24,6 +24,12 @@ class EducationInfoViewModel @Inject constructor() : ViewModel() {
     val uiEffect: Flow<UiEffect> by lazy { _uiEffect.receiveAsFlow() }
 
     fun onAction(uiAction: UiAction) {
+        when (uiAction) {
+            is UiAction.UniversityNameChanged -> updateUiState { copy(universityName = uiAction.universityName) }
+            is UiAction.DepartmentChanged -> updateUiState { copy(department = uiAction.department) }
+            is UiAction.StartDateChanged -> updateUiState { copy(startDate = uiAction.startDate) }
+            is UiAction.EndDateChanged -> updateUiState { copy(endDate = uiAction.endDate) }
+        }
     }
 
     private fun updateUiState(block: UiState.() -> UiState) {
