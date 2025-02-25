@@ -24,6 +24,14 @@ class PersonalInfoViewModel @Inject constructor() : ViewModel() {
     val uiEffect: Flow<UiEffect> by lazy { _uiEffect.receiveAsFlow() }
 
     fun onAction(uiAction: UiAction) {
+        when(uiAction) {
+            is UiAction.NameChanged -> updateUiState { copy(name = uiAction.name) }
+            is UiAction.SurnameChanged -> updateUiState { copy(surname = uiAction.surname) }
+            is UiAction.EmailChanged -> updateUiState { copy(email = uiAction.email) }
+            is UiAction.PhoneNumberChanged -> updateUiState { copy(phoneNumber = uiAction.phoneNumber) }
+            is UiAction.WebsiteChanged -> updateUiState { copy(website = uiAction.website) }
+            is UiAction.LocationChanged -> updateUiState { copy(location = uiAction.location) }
+        }
     }
 
     private fun updateUiState(block: UiState.() -> UiState) {
