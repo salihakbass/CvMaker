@@ -24,6 +24,9 @@ class SkillsInfoViewModel @Inject constructor() : ViewModel() {
     val uiEffect: Flow<UiEffect> by lazy { _uiEffect.receiveAsFlow() }
 
     fun onAction(uiAction: UiAction) {
+        when (uiAction) {
+            is UiAction.SkillsChanged -> updateUiState { copy(skills = uiAction.skills) }
+        }
     }
 
     private fun updateUiState(block: UiState.() -> UiState) {
