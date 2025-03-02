@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
+    implementation(libs.firebase.crashlytics.buildtools)
     testImplementation(libs.junit)
     androidTestImplementation(libs.junit.ext)
     androidTestImplementation(libs.espresso.core)
@@ -93,6 +94,13 @@ dependencies {
 
     // Detekt
     detektPlugins(libs.detekt.formatting)
+
+
+    implementation (libs.accompanist.navigation.animation)
+
+    implementation ("com.google.code.gson:gson:2.12.1")
+
+
 }
 
 detekt {
